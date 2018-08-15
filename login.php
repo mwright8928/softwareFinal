@@ -1,4 +1,4 @@
-<!-- Start sessions on registration page -->
+<!-- Start sessions on login page -->
 <?php session_start();?>
 
 <!DOCTYPE html>
@@ -97,7 +97,7 @@
             }
 
             //  Check if usename has been used.
-            $mySql = "SELECT username FROM credentials";
+            $mySql = "SELECT username FROM credentials ORDER BY username";
             $result = $conn->query($mySql);
             echo "<h4>Available logbook usernames:</h4>";
             if ($result->num_rows > 0) {
