@@ -50,27 +50,27 @@
           <fieldset>
             <legend class="legendOne">Register</legend>
             <?php
-              if(isset($_COOKIE['usertaken']) && $_COOKIE['usertaken'] == 1)  {
+              if(isset($_COOKIE['accessGranted']) && $_COOKIE['accessGranted'] == 0)  {
                 echo "<p>" . "Username has already taken!" . "<br/>" . "Please enter a different username." . "<p>";
               }
-              setcookie('usertaken', 0);
+              setcookie('accessGranted', 1);
             ?>
 
-            <form class="form-horizontal" action="addUser.php" method='post' id='login'>
+            <form class="form-horizontal" action="newUser.php" method='post' id='register'>
               <div class="form-group">
                 <label for="userIn">Username:</label>
                 <input type="username" class="form-control" id="newUser" name="newUsername" required autofocus>
-                <span id='userFeedback'></span>
+                <span id='uFeedback'></span>
               </div>
               <div class="form-group">
                 <label for="passIn">Password:</label>
                 <input type="password" class="form-control" id="newPass" name="newPassword" required autofocus>
-                <span id='passwordFeedback'></span>
+                <span id='pFeedback'></span>
               </div>
               <div class="form-group">
                 <label for="emailIn">Email:</label>
                 <input type="email" class="form-control" id="newMail" name="newEmail"required autofocus>
-                <span id='passwordfeedback'></span>
+                <span id='eFeedback'></span>
               </div>
               <button type="submit" class="btn btn-primary" value="create">Create</button>
             </form>
@@ -81,12 +81,12 @@
 
     <!-- Footer prompts -->
     <footer class="page-footer font-small">
-      <div class="text-center p-3">*Username and pasword must be at least 7 characters!*</div>
-      <div class="text-center">**Email address is required for password recovery!**</div>
+      <div class="text-center pt-3">*Username and pasword must be at least 7 characters!*</div>
+      <div class="text-center pt-3">**Email address is required for password recovery!**</div>
     </footer>
 
     <!-- Event listener script -->
-    <script src='./requestScreening.js'></script>
+    <script src='./screening.js'></script>
 
     <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

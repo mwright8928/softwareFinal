@@ -5,8 +5,9 @@
   //  Variables.
   $server = "localhost";
   $database = "logbook";
-  $username = $_POST["username"];
-  $password = $_POST["password"];
+  $username = $_POST["newUsername"];
+  $password = $_POST["newPassword"];
+  $email = $_POST["newEmail"];
   $accessGranted = 1;
 
     //  Connect to database.
@@ -19,7 +20,7 @@
       $conn = $newConn;
     }
 
-    //  Check if usename is in database.
+    //  Check if usename has been used.
     $mySql = "SELECT username FROM credentials";
     $result = $conn->query($mySql);
     if ($result->num_rows > 0) {

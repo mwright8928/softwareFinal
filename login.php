@@ -50,50 +50,71 @@
           <fieldset>
             <legend class="legendOne">Login</legend>
             <?php
-              if(isset($_COOKIE['access']) && $_COOKIE['access'] == -1)  {
+              if(isset($_COOKIE['accessGranted']) && $_COOKIE['accessGranted'] == 0)  {
                 echo "<p>" . "Invalid username and password combination!" . "<p>";
               }
-              setcookie('access', 1);
+              setcookie('accessGranted', 1);
             ?>
             <form class="form-horizontal" action="authentication.php" method='post' id='login'>
-                <div class="form-group">
-                    <label for="userInput">Username:</label>
-                    <input type="username" class="form-control" id="user" name="username" placeholder="Enter your username" required autofocus>
-                    <span id='userfeedback'></span>
-                </div>
-                <div class="form-group">
-                    <label for="passInput">Password:</label>
-                    <input type="password" class="form-control" id="pass" name="password" placeholder="Enter your password" required autofocus>
-                    <span id='passwordfeedback'></span>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox"> Remember me:</label>
-                </div>
-                <button type="submit" class="btn btn-primary" value="Login">Login</button>
-              </form>
-            </fieldset>
-          </div>
-        <div class="column" id="outside"></div>
-      </div>
+              <div class="form-group">
+                <label for="userIn">Username:</label>
+                <input type="username" class="form-control" id="user" name="username" required autofocus>
+              </div>
+              <div class="form-group">
+                <label for="passIn">Password:</label>
+                <input type="password" class="form-control" id="pass" name="password" autofocus>
+              </div>
+              <button type="submit" class="btn btn-primary" value="create">Login</button>
+            </form>
+          </fieldset>
+        </div>
+      <div class="column" id="outside"></div>
+    </div>
 
-    <?php
-      if(isset($_SESSION['username'])){
-        header("Location: ./midterm.php");
-      }
-    ?>
+      <!-- Footer prompts -->
+      <footer class="page-footer font-small">
+        <li class="text-center pt-3">'Guest' level access (view only): Enter the logbook username without entering a password.</div>
+        <li class="text-center pt-3 pb-3">'User' level access (view and edit): Enter the logbook username and password</div>
+      </footer>
 
-    <!-- Footer -->
-    <footer class="page-footer font-small">
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">2018 &copy Copyright:
-        <a href="../Project-VI/docs/logbook/mike.php"> Michael Wright</a>
-      </div>
-    </footer>
-    <!-- Event listener script -->
-    <script src='./requestScreening.js'></script>
+
+    <div class="row">
+      <div class="col"></div>
+        <div class="col-6">
+          <!-- Display Available usernames -->
+          <?php
+            $server = "localhost";
+            $database = "logbook";
+
+            //  Connect to database.
+            $newConn = new mysqli($server, 'root', '', $database);
+
+            //  Check connection.
+            if ($newConn->connect_error) {
+              die("connection failed: " . $newConn->connect_error);
+            } else {
+              $conn = $newConn;
+            }
+
+            //  Check if usename has been used.
+            $mySql = "SELECT username FROM credentials";
+            $result = $conn->query($mySql);
+            echo "<h4>Available logbook usernames:</h4>";
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                  echo $row["username"] . "<br/>";
+              }
+            }
+          ?>
+        </div>
+      <div class="col"></div>
+    </div>
+
     <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+  <!-- Closing tags -->
   </body>
 </html>
