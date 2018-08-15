@@ -19,6 +19,7 @@ body{
 
 button{
   float:right;
+  padding-bottom: 10px;
 }
 
 legend {
@@ -30,14 +31,4 @@ legend {
   border:1px solid black;
   color:white;
   font-size:125%;
-  }
-  .column {
-      float: left;
-      width: 33.33%;
-  }
-
-  .row:after {
-      content: "";
-      display: table;
-      clear: both;
   }

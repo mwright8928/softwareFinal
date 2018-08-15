@@ -45,8 +45,8 @@
 
     <!-- Registration form -->
     <div class="row">
-      <div class="column" id="outside"></div>
-        <div class="column" id="form">
+      <div class="col" id="outside"></div>
+        <div class="col" id="form">
           <fieldset>
             <legend class="legendOne">Register</legend>
             <?php
@@ -72,11 +72,11 @@
                 <input type="email" class="form-control" id="newMail" name="newEmail"required autofocus>
                 <span id='eFeedback'></span>
               </div>
-              <button type="submit" class="btn btn-primary" value="create">Create</button>
+              <button type="submit" id="submitBtn" class="btn btn-primary" value="create">Create</button>
             </form>
           </fieldset>
         </div>
-      <div class="column" id="outside"></div>
+      <div class="col" id="outside"></div>
     </div>
 
     <!-- Footer prompts -->

@@ -45,8 +45,8 @@
 
 
     <div class="row">
-      <div class="column" id="outside"></div>
-        <div class="column" id="form">
+      <div class="col" id="outside"></div>
+        <div class="col" id="form">
           <fieldset>
             <legend class="legendOne">Login</legend>
             <?php
@@ -68,7 +68,7 @@
             </form>
           </fieldset>
         </div>
-      <div class="column" id="outside"></div>
+      <div class="col" id="outside"></div>
     </div>
 
       <!-- Footer prompts -->
